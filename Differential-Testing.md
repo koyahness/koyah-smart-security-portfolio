@@ -73,12 +73,10 @@ Because FFI allows the execution of arbitrary shell commands, it is disabled by 
 forge test --ffi --match-test test_MathAgainstPython
 ```
 
-Why this is a 2026 Audit Requirement:
- * Catching Compiler Bugs: Sometimes the Solidity compiler itself has optimization bugs. Differential testing catches these because the Python model doesn't use the EVM.
- * Edge Case Discovery: Fuzzers are great at finding the exact 2^{256}-1 values that cause overflows which a human might never think to check.
- * Trustless Verification: It proves to your users (and auditors) that your "Code is Law" matches the "Math is Law" intended by the whitepaper.
-Would you like me to show you how to handle cases where the results shouldn't be exactly equal (e.g., allowing for 1-2 wei of rounding error tolerance)?
-The Power of Differential Testing
-This video provides a practical explanation of how differential testing uncovers hidden bugs by comparing Solidity behavior across different frameworks and languages.
+Audit Requirement:
 
-YouTube video views will be stored in your YouTube History, and your data will be stored and used by YouTube according to its Terms of Service
+ * Catching Compiler Bugs: Sometimes the Solidity compiler itself has optimization bugs. Differential testing catches these because the Python model doesn't use the EVM.
+
+ * Edge Case Discovery: Fuzzers are great at finding the exact 2^{256}-1 values that cause overflows which a human might never think to check.
+
+ * Trustless Verification: It proves to your users (and auditors) that your "Code is Law" matches the "Math is Law" intended by the whitepaper.
