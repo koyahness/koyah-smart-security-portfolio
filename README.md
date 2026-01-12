@@ -2,7 +2,7 @@
 
 This repository serves as a professional showcase of my expertise in Ethereum Virtual Machine (EVM) security. It contains a collection of security research, documented vulnerabilities, and optimized smart contract patterns designed to withstand sophisticated attacks.
 
-# 🛡️ Security Philosophy
+## 🛡️ Security Philosophy
 
 In decentralized finance (DeFi), code is law. My approach to auditing combines manual line-by-line analysis with automated tooling to ensure that protocols are not only bug-free but also economically resilient.
 
