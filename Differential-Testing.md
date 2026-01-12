@@ -66,8 +66,13 @@ contract DifferentialTest is Test {
 ```
 
 ## 4. Running the Test
+
 Because FFI allows the execution of arbitrary shell commands, it is disabled by default for security. You must run it with the --ffi flag:
+
+```
 forge test --ffi --match-test test_MathAgainstPython
+```
+
 Why this is a 2026 Audit Requirement:
  * Catching Compiler Bugs: Sometimes the Solidity compiler itself has optimization bugs. Differential testing catches these because the Python model doesn't use the EVM.
  * Edge Case Discovery: Fuzzers are great at finding the exact 2^{256}-1 values that cause overflows which a human might never think to check.
