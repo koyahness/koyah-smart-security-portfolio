@@ -32,8 +32,11 @@ result = int(amount * rate)
 # Return the result to Foundry as ABI-encoded bytes
 print(to_hex(encode_abi(['uint256'], [result])))
 ```
-3. The Solidity Differential Test
+## 3. The Solidity Differential Test
+
 In your Foundry test file, you use the ffi cheatcode to run that Python script.
+
+```
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
@@ -60,8 +63,9 @@ contract DifferentialTest is Test {
         assertEq(solidityResult, pythonResult, "Solidity math mismatched Python model");
     }
 }
+```
 
-4. Running the Test
+## 4. Running the Test
 Because FFI allows the execution of arbitrary shell commands, it is disabled by default for security. You must run it with the --ffi flag:
 forge test --ffi --match-test test_MathAgainstPython
 Why this is a 2026 Audit Requirement:
