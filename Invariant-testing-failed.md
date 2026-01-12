@@ -25,10 +25,14 @@ Counterexample:
 
 
 If you run your test with the -vvvv flag (four 'v's), Foundry provides a color-coded execution trace. This is where you see the "internal" failure.
+
  * Green: Successful calls.
  * Red: Reverted calls.
  * Yellow/Orange: Where the assert actually failed.
-You can look for the specific line where totalAssets became less than ghost_totalSumOfBalances. Often, you'll see a small discrepancy (e.g., 1 wei) caused by a rounding error, or a large discrepancy caused by a logic flaw or access control bypass.
+
+You can look for the specific line where totalAssets became less than ghost_totalSumOfBalances.
+
+Often, you'll see a small discrepancy (e.g., 1 wei) caused by a rounding error, or a large discrepancy caused by a logic flaw or access control bypass.
 
 
 ## 3. Interpreting Common Fails
@@ -40,14 +44,16 @@ When invariant_solvency fails, check these three usual suspects:
 | Fail after 1-2 calls | High-level logic error or incorrect math formula in the contract. |
 | Fail after 500+ calls | "Dust" accumulation. Small rounding errors that add up over time (e.g., 10 / 3 * 3 = 9). |
 | Fail on "Withdraw" | An underflow/overflow error or an incorrect update to the totalAssets state variable. |
-4. Using vm.label
+
+## 4. Using vm.label
+
 To make the counterexample easier to read, you should label your addresses in your setUp:
+
 vm.label(address(vault), "TheVault");
 vm.label(address(token), "USDC");
 vm.label(address(handler), "TheUserBot");
 
 Now, instead of seeing 0x71091..., the counterexample will say TheUserBot.deposit(100), making it instantly clear who is doing what.
-Would you like me to show you how to fix a common "Rounding Error" bug that these invariant tests often catch?
 
 Rounding errors are the "silent killers" of DeFi. Invariant tests usually catch them when the fuzzer discovers that by depositing and withdrawing repeatedly, a user can slowly "drain" the contract of a few wei each time.
 The Vulnerable Code (Division Before Multiplication)
