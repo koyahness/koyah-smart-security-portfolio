@@ -55,7 +55,12 @@ vm.label(address(handler), "TheUserBot");
 
 Now, instead of seeing 0x71091..., the counterexample will say TheUserBot.deposit(100), making it instantly clear who is doing what.
 
-Rounding errors are the "silent killers" of DeFi. Invariant tests usually catch them when the fuzzer discovers that by depositing and withdrawing repeatedly, a user can slowly "drain" the contract of a few wei each time.
+# Rounding Errors
+
+Rounding errors are the "silent killers" of DeFi.
+
+Invariant tests usually catch them when the fuzzer discovers that by depositing and withdrawing repeatedly, a user can slowly "drain" the contract of a few wei each time.
+
 The Vulnerable Code (Division Before Multiplication)
 In Solidity, there are no decimals. If you divide before you multiply, you lose the remainder (precision).
 // ❌ BAD: Rounds down significantly
