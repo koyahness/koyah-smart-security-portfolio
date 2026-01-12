@@ -57,17 +57,21 @@ Before deploying any contract, ensure the following checks are met:
 
 ### Installation
 
+```
 git clone https://github.com/your-username/smart-contract-security.git
 
 cd smart-contract-security
 
 forge install
+```
 
 ### Running Tests
 
 To simulate the attacks and verify the fixes:
 
+```
 forge test --match-path test/Reentrancy.t.sol -vvvv
+```
 
 ## 💡 Best Practices
 
