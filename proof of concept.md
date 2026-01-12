@@ -104,9 +104,12 @@ contract ReentrancyTest is Test {
 
 To make your portfolio look professional, add a "Laboratory" section to your README:
 
-/lab - Reproducible Exploits
+### /lab - Reproducible Exploits
+
 Every vulnerability in this repo includes a Foundry PoC.
+
  * Run the attack: forge test --match-test testExploit -vv
+   
  * Why it works: The VulnerableVault fails the Checks-Effects-Interactions pattern.
+   
  * The Fix: I've implemented a SecureVault.sol using ReentrancyGuard to demonstrate the mitigation.
-Would you like me to show you how to set up Slither (Static Analysis) to automatically catch this bug in your CI/CD pipeline?
