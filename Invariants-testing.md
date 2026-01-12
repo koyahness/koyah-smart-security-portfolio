@@ -1,9 +1,20 @@
-In Foundry, Invariant Testing (also called "Stateful Fuzzing") is the gold standard for DeFi security. Unlike a unit test that checks one specific scenario, an invariant test tries to break a fundamental rule of your contract by calling random functions in a random order thousands of times.
+# Invariant Testing
+
+In Foundry, Invariant Testing (also called "Stateful Fuzzing") is the gold standard for DeFi security.
+
+Unlike a unit test that checks one specific scenario, an invariant test tries to break a fundamental rule of your contract by calling random functions in a random order thousands of times.
+
 Here is a sample setup for a basic Lending/Vault contract.
-The Invariant Logic
+
+# The Invariant Logic
+
 We want to prove this rule: "The total assets held by the contract must always be greater than or equal to the sum of all individual user balances."
-1. The "Handler" (The User Simulator)
+
+## 1. The "Handler" (The User Simulator)
+
 First, we create a "Handler" contract. Think of this as a "bot" that knows how to interact with your protocol correctly but will try random amounts.
+
+```
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
@@ -39,9 +50,13 @@ contract Handler {
         ghost_totalSumOfBalances -= amount;
     }
 }
+```
 
-2. The Invariant Test
+## 2. The Invariant Test
+
 This is the contract Foundry actually runs. It points the fuzzer at the Handler and defines the "invariant" (the truth that must never be broken).
+
+```
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
@@ -67,8 +82,10 @@ contract VaultInvariants is Test {
         assertGe(totalAssets, handler.ghost_totalSumOfBalances());
     }
 }
+```
 
 How to Run It
+
 In your terminal, you would run:
 forge test --match-test invariant_solvency
 Foundry will then perform "Deep Actions":
