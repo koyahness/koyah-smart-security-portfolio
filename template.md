@@ -1,9 +1,14 @@
 # Audit Template
+
 Below is a template you can use to populate your /audits folder.
+
 Audit Report: [Protocol Name]
 Date: January 2026
 Auditor: [Your Name/Handle]
+Link to report: https://
+
 Severity: 1 Critical, 2 Medium, 3 Low
+
 1. Executive Summary
 A brief overview of the protocol's purpose and the overall security posture discovered during the review.
 2. Risk Classification
