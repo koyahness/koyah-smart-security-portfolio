@@ -20,8 +20,10 @@ Counterexample:
  * Calls: How many function calls it made within that run before the math failed.
  * The "Minimal" Sequence: Foundry uses a process called Shrinking. If it finds a bug after 1,000 calls, it tries to delete unnecessary calls to give you the shortest possible list of actions that still triggers the bug.
 
+
 ## 2. The Trace (The "How")
-   
+
+
 If you run your test with the -vvvv flag (four 'v's), Foundry provides a color-coded execution trace. This is where you see the "internal" failure.
  * Green: Successful calls.
  * Red: Reverted calls.
