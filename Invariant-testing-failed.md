@@ -1,3 +1,5 @@
+# Failed invariant
+
 When an invariant fails, Foundry doesn't just say "False." It provides a Counterexample, which is essentially a play-by-play "exploit script" that proves your contract is vulnerable.
 Reading these can be intimidating because they contain a lot of hex data and trace information. Here is how to break it down.
 1. The Call Sequence
