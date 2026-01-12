@@ -84,7 +84,8 @@ function calculateReward(uint256 amount) public view returns (uint256) {
     return (amount * rate) / precision;
 }
 ```
-Handling the "1 Wei" Problem
+## Handling the "1 Wei" Problem
+
 Even with multiplication first, the EVM always rounds down (truncates) toward zero. In a vault, if you calculate shares for a withdrawal and it rounds down, the user gets slightly less than they are owed. If it rounds up, the user gets more, and the protocol becomes insolvent.
 1. Use OpenZeppelin’s Math Library
 The safest way to fix this is to use a library that allows you to specify the Rounding Direction.
