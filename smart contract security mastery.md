@@ -48,7 +48,7 @@ Before deploying any contract, ensure the following checks are met:
 | Gas Limits | Could any loops exceed the block gas limit (DoS)? | □ |
 | Timestamp Dependency | Is the logic reliant on block.timestamp (which can be manipulated)? | □ |
 
-## 🚀 How to Use This Repo (project)
+## 🚀 How to Use This Repo (for a specific project)
 
 Prerequisites
 
