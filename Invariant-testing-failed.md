@@ -33,3 +33,53 @@ vm.label(address(handler), "TheUserBot");
 
 Now, instead of seeing 0x71091..., the counterexample will say TheUserBot.deposit(100), making it instantly clear who is doing what.
 Would you like me to show you how to fix a common "Rounding Error" bug that these invariant tests often catch?
+
+Rounding errors are the "silent killers" of DeFi. Invariant tests usually catch them when the fuzzer discovers that by depositing and withdrawing repeatedly, a user can slowly "drain" the contract of a few wei each time.
+The Vulnerable Code (Division Before Multiplication)
+In Solidity, there are no decimals. If you divide before you multiply, you lose the remainder (precision).
+// ❌ BAD: Rounds down significantly
+function calculateReward(uint256 amount) public view returns (uint256) {
+    // If rate is 10.5%, expressed as 105 / 1000
+    // amount = 9, rate = 105/1000 -> (9 / 1000) * 105 = 0 * 105 = 0
+    return (amount / precision) * rate; 
+}
+
+The Fix: Multiply First
+By rearranging the operations, you keep the precision as long as possible before the final division.
+// ✅ GOOD: More precise
+function calculateReward(uint256 amount) public view returns (uint256) {
+    // (9 * 105) / 1000 = 945 / 1000 = 0 (still 0, but much closer to the edge)
+    return (amount * rate) / precision;
+}
+
+Handling the "1 Wei" Problem
+Even with multiplication first, the EVM always rounds down (truncates) toward zero. In a vault, if you calculate shares for a withdrawal and it rounds down, the user gets slightly less than they are owed. If it rounds up, the user gets more, and the protocol becomes insolvent.
+1. Use OpenZeppelin’s Math Library
+The safest way to fix this is to use a library that allows you to specify the Rounding Direction.
+import { Math } from "@openzeppelin/contracts/utils/math/Math.sol";
+
+contract SecureVault {
+    using Math for uint256;
+
+    function convertToShares(uint256 assets) public view returns (uint256) {
+        // Round DOWN when issuing shares (protects protocol)
+        return assets.mulDiv(totalShares, totalAssets, Math.Rounding.Floor);
+    }
+
+    function convertToAssets(uint256 shares) public view returns (uint256) {
+        // Round DOWN when paying out assets (protects protocol)
+        return shares.mulDiv(totalAssets, totalShares, Math.Rounding.Floor);
+    }
+}
+
+2. The "Favor the Protocol" Rule
+ * When taking from the user: Round UP. (Ensure they pay enough).
+ * When giving to the user: Round DOWN. (Ensure the protocol doesn't overpay).
+How the Invariant Test Confirms the Fix
+Once you apply Math.Rounding.Floor to your withdrawal logic, run your Foundry invariant test again:
+ * The fuzzer will try to withdraw 1 wei repeatedly.
+ * Because you are rounding down, the user will receive 0 tokens for their 1 share (if the math results in 0.999).
+ * The totalAssets in the vault will remain \ge the ghost_totalSumOfBalances.
+ * The test passes!
+Would you like me to show you how to set up "Differential Testing," where we compare your contract's math against a known-perfect Python or JavaScript model?
+
