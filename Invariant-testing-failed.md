@@ -87,8 +87,12 @@ function calculateReward(uint256 amount) public view returns (uint256) {
 ## Handling the "1 Wei" Problem
 
 Even with multiplication first, the EVM always rounds down (truncates) toward zero. In a vault, if you calculate shares for a withdrawal and it rounds down, the user gets slightly less than they are owed. If it rounds up, the user gets more, and the protocol becomes insolvent.
+
 1. Use OpenZeppelin’s Math Library
+
 The safest way to fix this is to use a library that allows you to specify the Rounding Direction.
+
+```
 import { Math } from "@openzeppelin/contracts/utils/math/Math.sol";
 
 contract SecureVault {
@@ -104,8 +108,10 @@ contract SecureVault {
         return shares.mulDiv(totalAssets, totalShares, Math.Rounding.Floor);
     }
 }
+```
 
-2. The "Favor the Protocol" Rule
+### 2. The "Favor the Protocol" Rule
+
  * When taking from the user: Round UP. (Ensure they pay enough).
  * When giving to the user: Round DOWN. (Ensure the protocol doesn't overpay).
 How the Invariant Test Confirms the Fix
@@ -114,5 +120,4 @@ Once you apply Math.Rounding.Floor to your withdrawal logic, run your Foundry in
  * Because you are rounding down, the user will receive 0 tokens for their 1 share (if the math results in 0.999).
  * The totalAssets in the vault will remain \ge the ghost_totalSumOfBalances.
  * The test passes!
-Would you like me to show you how to set up "Differential Testing," where we compare your contract's math against a known-perfect Python or JavaScript model?
 
