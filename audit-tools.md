@@ -1,3 +1,5 @@
+# Audit tools for smart contracts
+
 In 2026, Solidity smart contract security auditing has evolved into a multi-layered process. While automated tools are more powerful than ever—now frequently augmented by AI—the industry consensus remains that they are a "first line of defense" designed to support, not replace, manual expert review.
 The modern security stack is generally categorized into five functional areas:
 1. Static Analysis (The "First Pass")
