@@ -61,14 +61,18 @@ Rounding errors are the "silent killers" of DeFi.
 
 Invariant tests usually catch them when the fuzzer discovers that by depositing and withdrawing repeatedly, a user can slowly "drain" the contract of a few wei each time.
 
-The Vulnerable Code (Division Before Multiplication)
+## The Vulnerable Code (Division Before Multiplication)
+
 In Solidity, there are no decimals. If you divide before you multiply, you lose the remainder (precision).
+
+```
 // ❌ BAD: Rounds down significantly
 function calculateReward(uint256 amount) public view returns (uint256) {
     // If rate is 10.5%, expressed as 105 / 1000
     // amount = 9, rate = 105/1000 -> (9 / 1000) * 105 = 0 * 105 = 0
     return (amount / precision) * rate; 
 }
+```
 
 The Fix: Multiply First
 By rearranging the operations, you keep the precision as long as possible before the final division.
