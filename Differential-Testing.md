@@ -1,4 +1,6 @@
-Differential Testing (also called Differential Fuzzing) is an advanced technique where you compare the output of your Solidity contract against a "reference model"—usually written in a high-level language like Python or JavaScript.
+# Differential Testing (also called Differential Fuzzing)
+
+An advanced technique where you compare the output of your Solidity contract against a "reference model"—usually written in a high-level language like Python or JavaScript.
 This is incredibly effective for DeFi protocols that use complex math (like bonding curves or interest rate models) where you need to ensure your Solidity implementation exactly matches a mathematical ideal.
 1. How It Works: The FFI Cheatcode
 Foundry uses a feature called FFI (Foreign Function Interface). This allows your Solidity tests to step "outside" the EVM, execute a script on your computer, and read the result back into the test.
