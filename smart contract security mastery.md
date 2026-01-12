@@ -63,13 +63,13 @@ cd smart-contract-security
 
 forge install
 
-Running Tests
+### Running Tests
 
 To simulate the attacks and verify the fixes:
 
 forge test --match-path test/Reentrancy.t.sol -vvvv
 
-💡 Best Practices
+## 💡 Best Practices
 
 > "Code for the worst-case scenario."
 
