@@ -25,8 +25,11 @@ contract Vault {
 }
 ```
 
-2. The Test: Vault.t.sol
+## 2. The Test: Vault.t.sol
+
 This test file demonstrates how Foundry interacts with the code above.
+
+```
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
@@ -64,7 +67,7 @@ contract VaultTest is Test {
 
         assertEq(vault.balances(user), amount);
     }
-
+```
     // 3. Testing Reverts
     function testFailWithdrawInsufficient() public {
         vm.expectRevert("Insufficient balance"); // Expect the next call to fail
