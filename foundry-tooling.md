@@ -2,9 +2,12 @@
 
 To understand Foundry at a comprehensive level, we need to dive into how it manages the state machine, handles dependencies, and leverages the EVM (Ethereum Virtual Machine) for advanced debugging.
 
-1. Deep Dive: Forge Cheatcodes (Vm.sol)
+## 1. Deep Dive: Forge Cheatcodes (Vm.sol)
+
 The most powerful aspect of Foundry is the ability to manipulate the blockchain state during tests using Cheatcodes. These are special instructions called through a precompiled address (0x7109709ECfa91a80626fF3989D68f67F5b1DD12D).
+
 Commonly used cheatcodes include:
+
  * vm.prank(address): Sets the msg.sender for the next call.
  * vm.warp(uint256): Sets the block timestamp (block.timestamp).
  * vm.roll(uint256): Sets the block number.
