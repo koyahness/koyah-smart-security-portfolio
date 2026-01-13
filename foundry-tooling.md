@@ -63,4 +63,3 @@ Cast allows you to perform complex operations from your terminal without writing
  * Convert Hex to Dec: cast --to-dec 0xabc
  * Send Transaction: cast send <to> "transfer(address,uint256)" <args> --rpc-url <url> --private-key <key>
  * Decode Data: cast 4byte-decode 0xa9059cbb (returns "transfer(address,uint256)")
-Would you like me to generate a sample Solidity test file that demonstrates how to use Fuzzing and Cheatcodes together?
