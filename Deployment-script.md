@@ -64,7 +64,7 @@ forge script script/Vault.s.sol:VaultScript --rpc-url <YOUR_RPC_URL>
 
 To send the transaction to a live network (like Sepolia or Mainnet):
 
-``
+```
 forge script script/Vault.s.sol:VaultScript --rpc-url <YOUR_RPC_URL> --broadcast --verify -vvvv
 ```
 
