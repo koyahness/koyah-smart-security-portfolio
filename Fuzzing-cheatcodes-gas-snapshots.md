@@ -1,5 +1,8 @@
-Here is a comprehensive example of a Solidity test file in Foundry. This example demonstrates a "Vault" contract and a corresponding test suite that utilizes Fuzzing, Cheatcodes, and Gas Snapshots.
-1. The Target: Vault.sol
+Fuzzing, Cheatcodes and Gas snapshots
+
+Solidity test file in Foundry. This example demonstrates a "Vault" contract and a corresponding test suite that utilizes Fuzzing, Cheatcodes, and Gas Snapshots.
+
+## 1. The Target: Vault.sol
 This simple contract allows users to deposit Ether and withdraw it later. It contains a basic security check to prevent unauthorized withdrawals.
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
