@@ -2,9 +2,13 @@
 
 In Foundry, deployment scripts are not written in JavaScript or TypeScript. Instead, they are written in Solidity. This allows you to use the same logic, types, and helper functions you used in your smart contracts.
 These scripts are executed by the Forge tool, which runs them locally to simulate the transactions before broadcasting them to the network.
-🛠️ Anatomy of a Deployment Script
+
+## 🛠️ Anatomy of a Deployment Script
+
 A standard script lives in the script/ directory and typically ends in .s.sol. It inherits from Script provided by the Forge Standard Library.
 Here is a deployment script for the Vault contract we discussed earlier:
+
+```
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
@@ -28,7 +32,7 @@ contract VaultScript is Script {
         vm.stopBroadcast();
     }
 }
-
+```
 🔍 Key Components Explained
 1. vm.startBroadcast()
 This is the most critical cheatcode for scripts.
