@@ -67,22 +67,26 @@ contract VaultTest is Test {
 
         assertEq(vault.balances(user), amount);
     }
-```
+
     // 3. Testing Reverts
     function testFailWithdrawInsufficient() public {
         vm.expectRevert("Insufficient balance"); // Expect the next call to fail
         vault.withdraw(1 ether);
     }
 }
+```
 
-3. Understanding the "Trace" Output
+## 3. Understanding the "Trace" Output
+
 When you run these tests using forge test -vvvv (the "v"s indicate verbosity), Foundry provides a high-fidelity execution trace. This is one of Foundry's most powerful features for debugging.
  * -v: Success/Failure summary.
  * -vv: Shows console.log outputs.
  * -vvv: Shows stack traces for failing tests.
  * -vvvv: Shows stack traces for all tests, including setup and successful calls.
  * -vvvvv: Shows full setup and storage traces.
-4. Advanced: Fork Testing
+
+## 4. Advanced: Fork Testing
+
 Foundry allows you to "fork" a live network (like Ethereum Mainnet) into your local testing environment. This is invaluable for testing interactions with existing protocols like Uniswap or Aave.
 Command:
 forge test --fork-url <YOUR_RPC_URL>
