@@ -4,11 +4,11 @@ Below is a template you can use to populate your /audits folder.
 
 **Audit Report**: [Protocol Name]
 
-Date: January 2026
+**Date**: January 2026
 
-Auditor: [Your Name/Handle]
+**Auditor**: [Your Name/Handle]
 
-Link to report: https://
+**Link to report**: https://
 
 ### Severity: 1 Critical, 2 Medium, 3 Low
 
