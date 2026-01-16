@@ -22,14 +22,14 @@ The most famous vulnerability (responsible for the DAO hack). It occurs when a c
    
  * Fix: Use the Checks-Effects-Interactions pattern or a ReentrancyGuard.
    
-2. Integer Overflow/Underflow
+### 2. Integer Overflow/Underflow
 
 Occurs when an arithmetic operation exceeds the maximum or minimum size of a type (relevant for Solidity versions < 0.8.0).
 
  * Vulnerability: A user with a balance of 0 subtracts 1, resulting in a massive positive balance.
  * Fix: Use Solidity 0.8+ or the OpenZeppelin SafeMath library.
 
-3. Logic & Access Control
+### 3. Logic & Access Control
 
 Errors in how permissions are handled, allowing unauthorized users to perform sensitive actions.
 
