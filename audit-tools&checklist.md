@@ -63,10 +63,10 @@ An extension that provides security-centric syntax highlighting and call-graph v
 
 | Tool Category | Best For | Typical Tool |
 |---|---|---|
-| Static Analysis | Speed, common bugs, CI/CD | Slither, Aderyn |
-| Fuzzing | Finding edge cases, unexpected state | Foundry, Echidna |
-| Formal Verification | Mathematical certainty of logic | Certora, Kontrol |
-| Visualization | Understanding complex architectures | Surya, Solidity Metrics |
+| ***Static Analysis*** | Speed, common bugs, CI/CD | Slither, Aderyn |
+| ***Fuzzing*** | Finding edge cases, unexpected state | Foundry, Echidna |
+| ***Formal Verification*** | Mathematical certainty of logic | Certora, Kontrol |
+| ***Visualization*** | Understanding complex architectures | Surya, Solidity Metrics |
 
 
 
