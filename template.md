@@ -2,7 +2,7 @@
 
 Below is a template you can use to populate your /audits folder.
 
-Audit Report: [Protocol Name]
+**Audit Report**: [Protocol Name]
 
 Date: January 2026
 
